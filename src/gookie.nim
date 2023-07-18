@@ -1,13 +1,12 @@
 import std/[
   asyncdispatch,
-  osproc
+  osproc,
+  json
 ]
 from std/options import get
 from std/strformat import fmt
 
-import pkg/webdriver
-
-import gookie/util
+import pkg/webdriver/chromedriver
 
 type
   GoogleUser* = ref object
@@ -20,37 +19,26 @@ func newGoogleUser*(username, password: string): GoogleUser =
   result.username = username
   result.password = password
 
-template withWebdriver(webdriverStartDelay: int; body: untyped): untyped =
-  ## Run with webdriver executed
-  let p = startProcess(
-    "geckodriver -p 4444",
-    options = {
-      poStdErrToStdOut,
-      poEvalCommand
-    }
-  )
-  await sleepAsync webdriverStartDelay
-  block:
-    body
-  close p
-
-proc setText(text: string; el: Element) =
-  click el
-  el.sendKeys text
-
 proc doLogin*(self: GoogleUser; webdriverStartDelay = 500) {.async.} =
   ## Login account in Google website and save your session cookies
-  withWebdriver webdriverStartDelay:
-    let
-      driver = newWebDriver()
-      session = createSession driver
-    session.navigate("https://accounts.google.com")
-    self.username.setText get await session.waitForElement "#identifierId"
-    await sleepAsync 200
-    click get await session.waitForElement "#identifierNext button"
-    self.password.setText get await session.waitForElement "#password input"
+  var driver = newChromeDriver()
+  var options = %*{
+    "excludeSwitches": ["enable-automation"],
+  }
+  await driver.startSession(options)
+  
+  await driver.setUrl("https://accounts.google.com")
+  var elem_username = await driver.getElementBySelector("#identifierId")
+  await driver.send_keys(elem_username, self.username)
+  var elem_loginbtn = await driver.getElementBySelector("#identifierNext button")
+  await driver.elementClick(elem_loginbtn)
+  var elem_password = await driver.getElementBySelector("#password input")
+  await driver.send_keys(elem_password, self.password)
+  # var elem_loginbtn = await driver.getElementBySelector("#btnLogin2")
+  # await driver.elementClick(elem_loginbtn)
 
-    let cookies = getAllCookies session
-    for cookie in cookies:
-      self.cookies.add (cookie.name, cookie.value)
-    session.close()
+  await driver.close()
+    # let cookies = getAllCookies session
+    # for cookie in cookies:
+    #   self.cookies.add (cookie.name, cookie.value)
+    # session.close()
