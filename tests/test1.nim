@@ -16,3 +16,4 @@ suite "Gookie":
     )
     waitFor user.doLogin
     require user.cookies.len != 0
+    echo user.cookies

@@ -11,6 +11,6 @@ srcDir        = "src"
 
 requires "nim >= 1.6.0"
 
-requires "webdriver"
+requires "https://github.com/yglukhov/webdriver"
 
 taskRequires "test", "dotenv"
