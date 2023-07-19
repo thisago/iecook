@@ -48,6 +48,8 @@ let cookies = getGoogleCookies()
 But first you need to install the client extension:
 
 **In Firefox**
+> **Note**
+> Firefox automatically deletes on close. **More secure**
 1. Go to `about:debugging#/runtime/this-firefox`
 2. Click in "Load Temporary Add-on..."
 3. Select the file: [client/extension/manifest.json](client/extension/manifest.json)
