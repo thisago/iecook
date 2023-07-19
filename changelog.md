@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.3.0 (2023/07/19)
+
+- Removed userscript because it haven't permission to get `httpOnly` cookies
+- Added client extension (tested in Firefox and Chrome); Closes #1
+
 ## Version 0.2.0 (2023/07/19)
 
 - Added disposable server to get cookie

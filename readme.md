@@ -8,7 +8,7 @@
 
 > **Warning**
 > This is a dangerous way to get Google Cookies, any program listening in port
-> 5566 will receive the Google cookies sent by userscript too. **Use with caution**
+> 5566 will receive the Google cookies sent by extension too. **Use with caution**
 
 </div>
 
@@ -30,8 +30,8 @@ When you run:
 discard getGoogleCookies()
 ```
 
-it will start an HTTP server (using Jester) that will wait the userscript send
-the cookies. The userscript sends it every second.
+it will start an HTTP server (using Jester) that will wait the extension send
+the cookies. The extension sends it every second.
 
 When the server receives the cookies, it will self close and return the cookie
 for you.
@@ -44,8 +44,21 @@ As said before, you can get the cookies with one call:
 let cookies = getGoogleCookies()
 ```
 
-but first you need to install the [client userscript](src/client.user.js), login
-into your Google account and go to [Google homepage ↗](https://google.com)
+But first you need to install the client extension:
+
+**In Firefox**
+1. Go to `about:debugging#/runtime/this-firefox`
+2. Click in "Load Temporary Add-on..."
+3. Select the file: [client/extension/manifest.json](client/extension/manifest.json)
+
+**In Chrome**
+1. Go to `chrome://extensions`
+2. Activate "Developer mode"
+3. Click "Load unpacked"
+4. Select [client/extension](client/extension) dir
+
+Then you need to be logged in into your Google account and go to
+[Google homepage ↗](https://google.com)
 
 ## License
 

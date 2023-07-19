@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "GookieClient",
+  "description": "Google Cookies. In your hands",
+  "version": "0.3.0",
+  "author": "Thiago Navarro",
+  "permissions": [
+    "cookies",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "gookieClient.js"
+    ]
+  }
+}
