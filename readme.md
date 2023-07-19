@@ -8,7 +8,8 @@
 
 > **Warning**
 > This is a dangerous way to get Google Cookies, any program listening in port
-> 5566 will receive the Google cookies sent by extension too. **Use with caution**
+> 5566 will receive the Google cookies sent by extension too.  
+> **Don't forget to disable the extension after use!**
 
 </div>
 
