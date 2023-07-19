@@ -58,8 +58,10 @@ But first you need to install the client extension:
 3. Click "Load unpacked"
 4. Select [client/extension](client/extension) dir
 
-Then you need to be logged in into your Google account and go to
-[Google homepage ↗](https://google.com)
+Then you need to be logged in into your Google account.
+
+> **Note**
+> Don't forget to keep your browser open! :)
 
 ## License
 
