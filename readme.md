@@ -4,7 +4,11 @@
 
 #### Google Cookies. In your hands
 
-**[About](#about) - [Installation](#installation)** - [License](#license)
+**[About](#about) - [Why](#why) - [How](#how)** - [License](#license)
+
+> **Warning**
+> This is a dangerous way to get Google Cookies, any program listening in port
+> 5566 will receive the Google cookies sent by userscript too. **Use with caution**
 
 </div>
 
@@ -12,25 +16,23 @@
 
 Take your Google session cookies with a line of Nim code!
 
-> **Note**
-> On every call, it will open the web browser, login into your account and close it.
-
-## Why
+## Why?
 
 One of required session cookies for authentication, the `__Secure-1PSIDTS` expires in ~20 minutes. This makes impossible to automate things like using [Google Bard in nim](https://github.com/thisago/bard).
 
 With this library, any time you want you can get the session cookies!
 
-## Installation
+## How?
 
-```bash
-# Install geckodriver
-pip install webdrivermanager
-webdrivermanager firefox --linkpath ~/.local/bin/
-
-# Instal this lib
-nimble install gookie
+When you run:
+```nim
+discard getGoogleCookies()
 ```
+it will start an HTTP server (using Jester) that will wait the userscript send
+the cookies. The userscript sends it every second.
+
+When the server receives the cookies, it will self close and return the cookie
+for you.
 
 ## License
 
