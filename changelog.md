@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.3.1 (2023/07/20)
+
+- Fixed client extension duplicated requests and error handling
+  
 ## Version 0.3.0 (2023/07/19)
 
 - Removed userscript because it haven't permission to get `httpOnly` cookies

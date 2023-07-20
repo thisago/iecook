@@ -1,12 +1,12 @@
 setInterval(() => {
-  const sendCookies = (cookies) => {
+  const sendCookies = async (cookies) => {
     let cookie = ""
     cookies.map((x) => {
       cookie += `${x.name}=${x.value}; `
     })
     console.log(cookie)
     try {
-      fetch("http://localhost:5556", {
+      await fetch("http://localhost:5556", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -15,17 +15,9 @@ setInterval(() => {
       })
     } catch {}
   }
-  if (window.chrome) {
-    chrome.cookies.getAll(
-      {
-        url: "https://www.google.com/",
-      },
-      sendCookies
-    )
+  const conf = {
+    url: "https://www.google.com/",
   }
-  browser.cookies
-    .getAll({
-      url: "https://www.google.com/",
-    })
-    .then(sendCookies)
+  if (window.chrome) chrome.cookies.getAll(conf, sendCookies)
+  else browser.cookies.getAll(conf).then(sendCookies)
 }, 1000)
