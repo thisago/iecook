@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.4.0 (2023/07/20)
+
+- Changed server from Jester to asynchttpserver; Fixed #2
+- Removed request headers from extension
+
 ## Version 0.3.1 (2023/07/20)
 
 - Fixed client extension duplicated requests and error handling
