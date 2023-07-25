@@ -4,6 +4,6 @@ import gookie
 
 suite "Gookie":
   test "Get it":
-    let cookies = getGoogleCookies() # wait userscript to send
+    let cookies = getGoogleCookies() # wait extension to send
     require cookies.len != 0
     echo cookies
