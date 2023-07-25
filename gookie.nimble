@@ -2,7 +2,7 @@
 
 version       = "0.3.1"
 author        = "Thiago Navarro"
-description   = "Google Cookies. In your hands"
+description   = "Google Cookies. In your hands."
 license       = "MIT"
 srcDir        = "src"
 

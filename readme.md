@@ -2,7 +2,7 @@
 
 # Gookie
 
-#### Google Cookies. In your hands
+#### Google Cookies. In your hands.
 
 **[About](#about) - [Why](#why) - [How](#how) - [Usage](#usage)** - [License](#license)
 
