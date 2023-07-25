@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 0.4.0 (2023/07/20)
+## Version 0.4.1 (2023/07/25)
+
+- Added blank server response
+
+## Version 0.4.0 (2023/07/25)
 
 - Changed server from Jester to asynchttpserver; Fixed #2
 - Removed request headers from extension

@@ -11,6 +11,7 @@ proc getGoogleCookies*: string =
   proc cb(req: Request) {.async.} =
     if req.reqMethod == HttpPost:
       cookie = req.body
+      await req.respond(Http200, "")
       close server
 
   server.listen Port defaultPort
