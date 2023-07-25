@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.4.1"
+version       = "0.4.0"
 author        = "Thiago Navarro"
 description   = "Google Cookies. In your hands."
 license       = "MIT"
