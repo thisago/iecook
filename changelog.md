@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.4.1 (2023/07/25)
+
+- Base64 encode/decode cookies
+
 ## Version 0.4.0 (2023/07/25)
 
 - Changed server from Jester to asynchttpserver; Fixed #2

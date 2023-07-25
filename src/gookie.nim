@@ -1,5 +1,6 @@
 import std/asyncdispatch
 import std/asynchttpserver
+import std/base64
 
 const defaultPort = 5556
 
@@ -10,7 +11,7 @@ proc getGoogleCookies*: string =
 
   proc cb(req: Request) {.async.} =
     if req.reqMethod == HttpPost:
-      cookie = req.body
+      cookie = decode req.body
       close server
 
   server.listen Port defaultPort

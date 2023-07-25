@@ -1,9 +1,12 @@
+from std/strutils import split
 import std/unittest
 
 import gookie
 
 suite "Gookie":
   test "Get it":
-    for i in 0..2:
+    for i in 0..5:
       echo i
-      require getGoogleCookies().len >= 0
+      let cookies = getGoogleCookies()
+      require cookies.split("; ").len > 5
+      # echo cookies

