@@ -6,6 +6,7 @@
 - Now `getGoogleCookies` returns a Nim object instead a string
 - The data sent by client extension is now a base64 encoded JSON
 - Added `hasKey` func
+- Added `[]` func
 
 ## Version 0.4.1 (2023/07/25)
 

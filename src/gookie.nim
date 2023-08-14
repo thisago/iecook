@@ -41,6 +41,13 @@ func hasKey*(self: GoogleCookies; key: string): bool =
     if cookie.name == key:
       return true
 
+func `[]`*(self: GoogleCookies; key: string): string =
+  ## Get key value in Google Cookies list
+  for cookie in self.cookies:
+    if cookie.name == key:
+      return cookie.value
+  raise newException(ValueError, "Key '" & key & "' not exists")
+
 proc getGoogleCookies*: GoogleCookiesList =
   ## Waits the userscript send all Google cookies available and returns
   var
