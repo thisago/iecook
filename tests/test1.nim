@@ -8,5 +8,6 @@ suite "Gookie":
     for i in 0..5:
       echo i
       let cookies = getGoogleCookies()
+      echo $cookies[0].cookies
       require cookies.len > 0
       require cookies[0].cookies.len > 3

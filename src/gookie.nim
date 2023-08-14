@@ -5,6 +5,7 @@ from std/strtabs import newStringTable, modeCaseInsensitive, `[]=`, `[]`
 export strtabs.`[]`
 
 from std/base64 import decode
+from std/strutils import join
 from std/json import parseJson, JsonNode, keys, items, `[]`, getStr
 
 const defaultPort = 5556
@@ -41,12 +42,20 @@ func hasKey*(self: GoogleCookies; key: string): bool =
     if cookie.name == key:
       return true
 
+
 func `[]`*(self: GoogleCookies; key: string): string =
   ## Get key value in Google Cookies list
   for cookie in self.cookies:
     if cookie.name == key:
       return cookie.value
   raise newException(ValueError, "Key '" & key & "' not exists")
+
+func `$`*(cookies: seq[GoogleCookie]): string =
+  ## Stringify cookies
+  var strCookies: seq[string]
+  for cookie in cookies:
+    strCookies.add cookie.name & "=" & cookie.value
+  result = strCookies.join ";"
 
 proc getGoogleCookies*: GoogleCookiesList =
   ## Waits the userscript send all Google cookies available and returns
