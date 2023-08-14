@@ -34,6 +34,13 @@ proc toGoogleCookiesList(node: JsonNode): GoogleCookiesList =
       )
     inc i
 
+func hasKey*(self: GoogleCookies; key: string): bool =
+  ## CHeck if cookie key exists in Google cookies
+  result = false
+  for cookie in self.cookies:
+    if cookie.name == key:
+      return true
+
 proc getGoogleCookies*: GoogleCookiesList =
   ## Waits the userscript send all Google cookies available and returns
   var
