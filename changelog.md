@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.5.0 (2023/08/14)
+
+- Added support to Firefox Containers (Cookie Stores)
+- Now `getGoogleCookies` returns a Nim object instead a string
+- The data sent by client extension is now a base64 encoded JSON
+
 ## Version 0.4.1 (2023/07/25)
 
 - Base64 encode/decode cookies

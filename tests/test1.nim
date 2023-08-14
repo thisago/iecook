@@ -8,5 +8,5 @@ suite "Gookie":
     for i in 0..5:
       echo i
       let cookies = getGoogleCookies()
-      require cookies.split("; ").len > 5
-      # echo cookies
+      require cookies.len > 0
+      require cookies[0].cookies.len > 3
