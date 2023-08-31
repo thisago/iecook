@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "iecook",
-  "description": "In other words: Cook",
+  "description": "Cook all your browser cookies!",
   "version": "0.6.0",
   "author": "Thiago Navarro",
   "permissions": [

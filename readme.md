@@ -2,7 +2,7 @@
 
 # ieCook
 
-#### iecook<small>_iecook_</small> - In other words: Cook
+#### Cook all your browser cookies!
 
 **[About](#about) - [Why](#why) - [How](#how) - [Usage](#usage)** - [License](#license)
 
