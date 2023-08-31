@@ -2,7 +2,7 @@
 
 version       = "0.6.0"
 author        = "Thiago Navarro"
-description   = "In other words: Cook"
+description   = "Cook all cookies of your browser"
 license       = "MIT"
 srcDir        = "src"
 
