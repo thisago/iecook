@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "iecook",
-  "description": "iecook - In other words: Cook",
+  "description": "In other words: Cook",
   "version": "0.6.0",
   "author": "Thiago Navarro",
   "permissions": [
