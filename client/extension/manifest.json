@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "GookieClient",
-  "description": "Google Cookies. In your hands.",
-  "version": "0.4.0",
+  "name": "iecook",
+  "description": "iecook - In other words: Cook",
+  "version": "0.6.0",
   "author": "Thiago Navarro",
   "permissions": [
     "cookies",
@@ -10,7 +10,7 @@
   ],
   "background": {
     "scripts": [
-      "gookieClient.js"
+      "iecook.js"
     ]
   }
 }

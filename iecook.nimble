@@ -1,8 +1,8 @@
 # Package
 
-version       = "0.5.0"
+version       = "0.6.0"
 author        = "Thiago Navarro"
-description   = "Google Cookies. In your hands."
+description   = "iecook - In other words: Cook"
 license       = "MIT"
 srcDir        = "src"
 

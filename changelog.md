@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.6.0 (2023/08/14)
+
+- Renamed project to igcook
+- Added domain selection
+
 ## Version 0.5.0 (2023/08/14)
 
 - Added support to Firefox Containers (Cookie Stores)

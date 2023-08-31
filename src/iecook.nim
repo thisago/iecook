@@ -1,6 +1,6 @@
 import std/asyncdispatch
 from std/asynchttpserver import newAsyncHttpServer, Request, HttpPost, close,
-                                listen, acceptRequest
+                                listen, acceptRequest, respond, HttpGet, Http200
 from std/strtabs import newStringTable, modeCaseInsensitive, `[]=`, `[]`
 export strtabs.`[]`
 
@@ -11,20 +11,21 @@ from std/json import parseJson, JsonNode, keys, items, `[]`, getStr
 const defaultPort = 5556
 
 type
-  GoogleCookiesList* = seq[GoogleCookies]
-  GoogleCookies* = tuple
-    ## List of all Google's cookies
+  IeCookList* = seq[IeCook]
+    ## List of all containers with their cookies
+  IeCook* = tuple
+    ## List of all cookies
     context: string
     cookies: seq[GoogleCookie]
   GoogleCookie* = tuple
-    ## One Google cookie
+    ## One cookie
     name, value: string
 
-proc toGoogleCookiesList(node: JsonNode): GoogleCookiesList =
-  ## Transform JSON sent by client extension into a GoogleCookies list
+proc toIeCookList(node: JsonNode): IeCookList =
+  ## Transform JSON sent by client extension into a IeCook list
   var i = 0
   for key in node.keys:
-    result.add GoogleCookies (
+    result.add IeCook (
       context: key,
       cookies: @[]
     )
@@ -35,16 +36,16 @@ proc toGoogleCookiesList(node: JsonNode): GoogleCookiesList =
       )
     inc i
 
-func hasKey*(self: GoogleCookies; key: string): bool =
-  ## CHeck if cookie key exists in Google cookies
+func hasKey*(self: IeCook; key: string): bool =
+  ## CHeck if cookie key exists in cookies
   result = false
   for cookie in self.cookies:
     if cookie.name == key:
       return true
 
 
-func `[]`*(self: GoogleCookies; key: string): string =
-  ## Get key value in Google Cookies list
+func `[]`*(self: IeCook; key: string): string =
+  ## Get key value in cookies list
   for cookie in self.cookies:
     if cookie.name == key:
       return cookie.value
@@ -57,16 +58,18 @@ func `$`*(cookies: seq[GoogleCookie]): string =
     strCookies.add cookie.name & "=" & cookie.value
   result = strCookies.join ";"
 
-proc getGoogleCookies*: GoogleCookiesList =
-  ## Waits the userscript send all Google cookies available and returns
+proc ieCook*(domain: string): IeCookList =
+  ## Get all cookies for `domain`
   var
     server = newAsyncHttpServer()
     cookies: type result
 
   proc cb(req: Request) {.async.} =
-    if req.reqMethod == HttpPost:
-      cookies = toGoogleCookiesList parseJson decode req.body
+    if req.reqMethod == HttpPost and req.url.path == "/cookies":
+      cookies = toIeCookList parseJson decode req.body
       close server
+    elif req.reqMethod == HttpGet and req.url.path == "/domain":
+      await req.respond(Http200, domain)
 
   server.listen Port defaultPort
   try:
@@ -74,3 +77,6 @@ proc getGoogleCookies*: GoogleCookiesList =
       waitFor server.acceptRequest cb
   except OSError:
     result = cookies
+
+when isMainModule:
+  echo ieCook "https://google.com"

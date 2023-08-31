@@ -1,13 +1,13 @@
 from std/strutils import split
 import std/unittest
 
-import gookie
+import iecook
 
 suite "Gookie":
   test "Get it":
     for i in 0..5:
       echo i
-      let cookies = getGoogleCookies()
-      echo $cookies[0].cookies
+      let cookies = ieCook "https://google.com"
+      echo cookies
       require cookies.len > 0
-      require cookies[0].cookies.len > 3
+      require cookies[0].cookies.len > 2

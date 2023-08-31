@@ -1,69 +1,70 @@
 <div align=center>
 
-# Gookie
+# ieCook
 
-#### Google Cookies. In your hands.
+#### iecook<small>_iecook_</small> - In other words: Cook
 
 **[About](#about) - [Why](#why) - [How](#how) - [Usage](#usage)** - [License](#license)
 
 > **Warning**
-> This is a dangerous way to get Google Cookies, any program listening in port
-> 5566 will receive the Google cookies sent by extension too.  
-> **Don't forget to disable the extension after use!**
+> This is a dangerous way to get cookies, any program listening in port 5566 can
+> request the cookies sent by extension too.  
+> **So don't forget to disable the extension after use!**
 
 </div>
 
 ## About
 
-Take your Google session cookies with a line of Nim code!
+Have you ever needed to get `httpOnly` cookies to use in your application?
+No? Doesn't matter, this library gives you this power!
+
+It gets all cookies from all Firefox containers too! :D
 
 ## Why?
 
-One of required session cookies for authentication, the `__Secure-1PSIDTS` expires in ~20 minutes. This makes impossible to automate things like using [Google Bard in nim](https://github.com/thisago/bard).
+This is needed to interface with authentication in some websites.
 
-With this library, any time you want you can get the session cookies!
+Currently, you can see this library used in [thisago/bard](https://github.com/thisago/bard)
 
 ## How?
 
-When you run:
+It will start an HTTP server that waits the extension requests the website which
+you want the cookies and send to server the wanted cookies.
 
-```nim
-discard getGoogleCookies()
-```
+When the server receives the cookies, it closes itself and return the cookie for
+you!
 
-it will start an HTTP server (using Jester) that will wait the extension send
-the cookies. The extension sends it every second.
+## Setup
 
-When the server receives the cookies, it will self close and return the cookie
-for you.
-
-## Usage
-
-As said before, you can get the cookies with one call:
-
-```nim
-let cookies = getGoogleCookies()
-```
-
-But first you need to install the client extension:
-
+Tou need to install the client extension:
 **In Firefox**
+
 > **Note**
 > Firefox automatically deletes on close. **More secure**
+
 1. Go to `about:debugging#/runtime/this-firefox`
 2. Click in "Load Temporary Add-on..."
 3. Select the file: [client/extension/manifest.json](client/extension/manifest.json)
 
 **In Chrome**
+
 1. Go to `chrome://extensions`
 2. Activate "Developer mode"
 3. Click "Load unpacked"
 4. Select [client/extension](client/extension) dir
 
-Then you need to be logged in into your Google account.
-
 > **Note**
 > Don't forget to keep your browser open! :)
+
+## Usage
+
+The usage is pretty simple
+
+```nim
+let cooked = ieCookDomain "google.com"
+```
+
+It returns to you a `seq[GoogleCookies]`
 
 ## License
 
