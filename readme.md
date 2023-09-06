@@ -61,7 +61,7 @@ Tou need to install the client extension:
 The usage is pretty simple
 
 ```nim
-let cooked = ieCookDomain "google.com"
+let cooked = ieCook "google.com"
 ```
 
 It returns to you a `seq[GoogleCookies]`

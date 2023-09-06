@@ -77,6 +77,3 @@ proc ieCook*(domain: string): IeCookList =
       waitFor server.acceptRequest cb
   except OSError:
     result = cookies
-
-when isMainModule:
-  echo ieCook "https://google.com"
