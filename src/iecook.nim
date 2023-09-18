@@ -58,7 +58,7 @@ func `$`*(cookies: seq[GoogleCookie]): string =
     strCookies.add cookie.name & "=" & cookie.value
   result = strCookies.join ";"
 
-proc ieCook*(domain: string): IeCookList =
+proc iecook*(domain: string): IeCookList =
   ## Get all cookies for `domain`
   var
     server = newAsyncHttpServer()

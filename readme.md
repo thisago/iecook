@@ -61,10 +61,10 @@ Tou need to install the client extension:
 The usage is pretty simple
 
 ```nim
-let cooked = ieCook "google.com"
+let cooked = iecook "https://google.com"
 ```
 
-It returns to you a `seq[GoogleCookies]`
+It returns to you a `seq[IeCook]`
 
 ## License
 
