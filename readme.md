@@ -24,7 +24,7 @@ It gets all cookies from all Firefox containers too! :D
 
 This is needed to interface with authentication in some websites.
 
-Currently, you can see this library used in [thisago/bard](https://github.com/thisago/bard)
+Currently, you can see this library used in [thisago/clibard](https://github.com/thisago/clibard)
 
 ## How?
 
