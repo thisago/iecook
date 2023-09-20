@@ -1,6 +1,6 @@
 <div align=center>
 
-# ieCook
+# iecook
 
 #### Cook all your browser cookies!
 
