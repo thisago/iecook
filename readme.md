@@ -42,6 +42,9 @@ Tou need to install the client extension:
 > **Note**
 > Firefox automatically deletes on close. **More secure**
 
+> **Warning**
+> The client extension doesn't works when `privacy.firstparty.isolate` is enabled at `about:config` at Firefox.
+
 1. Go to `about:debugging#/runtime/this-firefox`
 2. Click in "Load Temporary Add-on..."
 3. Select the file: [client/extension/manifest.json](client/extension/manifest.json)
